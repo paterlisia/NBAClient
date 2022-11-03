@@ -3,7 +3,7 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
-import { Tabs, Tab } from '@mui/material';
+import { Tabs, Tab, Divider } from '@mui/material';
 import ProTip from './ProTip';
 
 // internal components
@@ -37,7 +37,7 @@ export default function App() {
     <Header title="NBA" sections={sections} />
       <Box sx={{ my: 4 }}>
       <TabPanel />
-        <StickyFooter />
+      <StickyFooter />
       </Box>
     </Container>
   );
