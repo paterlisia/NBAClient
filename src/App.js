@@ -3,11 +3,13 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
+import { Tabs, Tab } from '@mui/material';
 import ProTip from './ProTip';
 
 // internal components
 import Header from './Header/Header';
 import StickyFooter from './Footer/Footer';
+import TabPanel from './Tabs/TabPanel';
 
 const sections = [
   { title: 'Home', url: '#' },
@@ -34,10 +36,7 @@ export default function App() {
     <Container >
     <Header title="NBA" sections={sections} />
       <Box sx={{ my: 4 }}>
-        <Typography variant="h4" component="h1" gutterBottom>
-          Create React App example
-        </Typography>
-        <ProTip />
+      <TabPanel />
         <StickyFooter />
       </Box>
     </Container>

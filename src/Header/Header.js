@@ -6,6 +6,12 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 
+// internal components
+import Home from '../Home/Home';
+import Teams from '../Teams/Teams';
+import Players from '../Players/Players';
+import Games from '../Games/Games';
+
 function Header(props) {
   const { sections, title } = props;
 
@@ -33,18 +39,19 @@ function Header(props) {
         variant="dense"
         sx={{ justifyContent: 'space-between', overflowX: 'auto' }}
       >
-        {sections.map((section) => (
-          <Link
-            color="inherit"
-            noWrap
-            key={section.title}
-            variant="body2"
-            href={section.url}
-            sx={{ p: 1, flexShrink: 0 }}
-          >
-            {section.title}
-          </Link>
-        ))}
+        {/* <Tabs
+          value={value}
+          onChange={handleChange}
+          indicatorColor="secondary"
+          textColor="inherit"
+          variant="fullWidth"
+          aria-label="full width tabs example"
+        >
+          <Tab label="Home" {...Home} />
+          <Tab label="Players" {...Players} />
+          <Tab label="Teams" {...Teams} />
+          <Tab label="Games" {...Games} />
+        </Tabs> */}
       </Toolbar>
     </React.Fragment>
   );
