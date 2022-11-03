@@ -10,7 +10,7 @@ import Typography from "@mui/material/Typography";
 
 export default function LeaderPlayers() {
   return (
-    <Box sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
+    <Box sx={{ width: "100%", maxWidth: 200, bgcolor: "background.paper" }}>
         <br/>
       <Typography
         component="div"
@@ -21,7 +21,7 @@ export default function LeaderPlayers() {
       </Typography>
       <br/>
       <Divider />
-      <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
+      <List sx={{ width: "100%", maxWidth: 200, bgcolor: "background.paper" }}>
         <ListItem alignItems="flex-start">
           <ListItemAvatar>
             <Avatar

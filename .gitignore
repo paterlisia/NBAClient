@@ -1,6 +1,6 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# dependencies
+# dependencies(installed by package.json, please do npm install when adding new dependencies)
 /node_modules
 /.pnp
 .pnp.js
