@@ -5,6 +5,7 @@ const useStyles = makeStyles({
     background: "black",
     color: "white",
     fontSize:10,
+    opacity: 0.9,
 
     '& Copyright': {
         fontSize:12,
