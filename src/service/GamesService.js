@@ -9,7 +9,7 @@ export default class GamesService {
       ...this.Config,
       ...{
         method: 'get',
-        url: `http://127.0.0.1:5011/api/games/${date}`
+        url: `http://3.143.232.110:5011/api/games/${date}`
       },
     };
     return await axios(config);

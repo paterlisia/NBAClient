@@ -125,7 +125,7 @@ export default function Games() {
                     <Card sx={{ display: "flex" }}>
                       <CardMedia
                         component="img"
-                        sx={{ width: 151 }}
+                        sx={{ width: 230, height: 230 }}
                         image={gamesList[key].teams[0].logo}
                         alt="Live from space album cover"
                       />
@@ -167,7 +167,7 @@ export default function Games() {
                       </Box>
                       <CardMedia
                         component="img"
-                        sx={{ width: 151 }}
+                        sx={{ width: 230, height: 230 }}
                         image={gamesList[key].teams[1].logo}
                         alt="Live from space album cover"
                         alignItems="right"
