@@ -23,7 +23,7 @@ export default function Members() {
                 color="#FFF"
               >
                 
-                <Link color="whilte" href="https://github.com/paterlisia">
+                <Link color="white" href="https://github.com/paterlisia">
                 https://github.com/paterlisia
                 </Link>
               </Typography>
@@ -43,7 +43,7 @@ export default function Members() {
                 variant="body2"
                 color="#FFF"
               >
-                <Link color="whilte" href="https://github.com/yaannnik">
+                <Link color="white" href="https://github.com/yaannnik">
                 https://github.com/yaannnik
                 </Link>
               </Typography>
@@ -64,7 +64,7 @@ export default function Members() {
                 color="#FFF"
               >
                 
-                <Link color="whilte" href="https://github.com/Jiashu0326">
+                <Link color="white" href="https://github.com/Jiashu0326">
                 https://github.com/Jiashu0326
                 </Link>
               </Typography>
@@ -87,7 +87,7 @@ export default function Members() {
                 color="#FFF"
               >
                 
-                <Link color="whilte" href="https://github.com/MiracleLinzzz">
+                <Link color="white" href="https://github.com/MiracleLinzzz">
                 https://github.com/MiracleLinzzz
                 </Link>
               </Typography>

@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, {useEffect} from "react";
 import { useState } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -16,19 +16,18 @@ import TextField from "@mui/material/TextField";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 
 // styles
-import { createTheme, ThemeProvider, useTheme } from "@mui/material/styles";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 // internal component
 import LeaderPlayers from "./LeaderPlayers";
 
 // date type
-import dayjs, { Dayjs } from "dayjs";
+import dayjs from "dayjs";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 // service
 import GamesService from "../service/GamesService";
 
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 const theme = createTheme();
 const color = "white";
@@ -38,27 +37,40 @@ export default function Games() {
   const [value, setValue] = useState(dateInit);
   const [gamesList, setGamesList] = useState({});
 
-  React.useEffect(() => {
-    console.log(gamesList);
-  }, [gamesList]);
+  const service = new GamesService();
+  useEffect(() => {
+    // send get reqeust as today initally
+    var myDate = dayjs().format("YYYYMMDD");
+    const rsp = service.getGamesByDate(myDate);
+    rsp.then((response) => {
+    console.log(response.status);
+      if (response.status === 200) {
+        setGamesList(response.data);
+      } else {
+        console.log(response.status);
+      }
+    }).catch(error => {
+        console.log(error);
+        setGamesList([]);
+      });
+  }, []);
   const handleChange = (dateDayjs) => {
     setValue(dateDayjs);
     // convert date to timestamp
     var myDate = dateDayjs.format("YYYYMMDD");
     // send get reqeust
-    const service = new GamesService();
     const rsp = service.getGamesByDate(myDate);
     rsp.then((response) => {
       setGamesList(response.data);
-    });
+    }).catch(error => {
+        console.log(error);
+        setGamesList([]);
+      });
   };
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <main>
-        <Typography gutterBottom variant="h5" component="h2">
-          This should be Games page
-        </Typography>
+        
         <Container sx={{ py: 8 }} maxWidth="md">
           <Grid container spacing={4}>
             {/* NBA Game date select card */}
@@ -119,7 +131,11 @@ export default function Games() {
               </Card>
             </Grid>
             {/* NBA Game info card */}
-            {Object.keys(gamesList).map(key=>
+            {gamesList.length === 0? 
+            <Typography gutterBottom variant="h5" component="h2">
+                There is no game today
+            </Typography>
+            : Object.keys(gamesList).map(key=>
               {
                 return (<Grid item key={gamesList[key]} xs={12}>
                     <Card sx={{ display: "flex" }}>
@@ -181,7 +197,6 @@ export default function Games() {
             )}
           </Grid>
         </Container>
-      </main>
     </ThemeProvider>
   );
 }

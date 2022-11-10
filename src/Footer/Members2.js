@@ -23,7 +23,7 @@ export default function Members2() {
                 color="#FFF"
               >
                 
-                <Link color="whilte" href="https://github.com/Bluepossibility">
+                <Link color="white" href="https://github.com/Bluepossibility">
                 https://github.com/Bluepossibility
                 </Link>
               </Typography>
@@ -43,7 +43,7 @@ export default function Members2() {
                 variant="body2"
                 color="#FFF"
               >
-                <Link color="whilte" href="https://github.com/Ekko-Hu">
+                <Link color="white" href="https://github.com/Ekko-Hu">
                 https://github.com/Ekko-Hu
                 </Link>
               </Typography>
