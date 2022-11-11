@@ -26,7 +26,7 @@ export default function LeaderPlayers() {
           <ListItemAvatar>
             <Avatar
               alt="Kristaps Porzingis"
-              src="/static/images/avatar/1.jpg"
+              src="../static/images/avatar/1.jpg"
             />
           </ListItemAvatar>
           <ListItemText
