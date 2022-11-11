@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 function Header(props) {
-  const { sections, title } = props;
+  const { title } = props;
 
   return (
     <React.Fragment>
