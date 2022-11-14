@@ -25,7 +25,7 @@ import ReactApexChart from "react-apexcharts";
 import axios from 'axios';
 import Fucks from "./Fucks";
 // internal component
-import RadarChart from "./Radar";
+import RadarChart from "./Radar_func";
 import Shits from "./details";
 // import HighlightCardDemo from "./CustomCard";
 import HighlightCardDemo from "./carddemo";

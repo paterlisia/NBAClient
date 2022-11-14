@@ -76,7 +76,7 @@ export default function Fucks() {
         {/* <HighlightCardDemo /> */}
         <RadarChart />
         <div><Button type="primary">
-          <Link to="/team/111">到team2</Link>
+          <Link to="/team1">到team1</Link>
         </Button></div>
           {/* End hero unit */}
           <Grid container spacing={4}>
