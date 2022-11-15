@@ -1,30 +1,38 @@
-import * as React from 'react';
-import {Typography, ListItemText, ListItem, Divider, List, Link} from '@material-ui/core';
-
+import * as React from "react";
+import {
+  Typography,
+  ListItemText,
+  ListItem,
+  Divider,
+  List,
+  Link,
+} from "@material-ui/core";
 
 const flexContainer = {
-    display: 'flex',
-    flexDirection: 'row',
-    padding: 0,
-  };
+  display: "flex",
+  flexDirection: "row",
+  padding: 0,
+};
 
 export default function Members() {
   return (
-    <List style={flexContainer} sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+    <List
+      style={flexContainer}
+      sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
+    >
       <ListItem alignItems="flex-start">
         <ListItemText
           primary="Joanna"
           secondary={
             <React.Fragment>
               <Typography
-                sx={{ display: 'inline' }}
+                sx={{ display: "inline" }}
                 component="span"
                 variant="body2"
-                color="#FFF"
+                color="secondary"
               >
-                
-                <Link color="white" href="https://github.com/paterlisia">
-                https://github.com/paterlisia
+                <Link color="secondary" href="https://github.com/paterlisia">
+                  https://github.com/paterlisia
                 </Link>
               </Typography>
             </React.Fragment>
@@ -38,13 +46,13 @@ export default function Members() {
           secondary={
             <React.Fragment>
               <Typography
-                sx={{ display: 'inline' }}
+                sx={{ display: "inline" }}
                 component="span"
                 variant="body2"
-                color="#FFF"
+                color="secondary"
               >
-                <Link color="white" href="https://github.com/yaannnik">
-                https://github.com/yaannnik
+                <Link color="secondary" href="https://github.com/yaannnik">
+                  https://github.com/yaannnik
                 </Link>
               </Typography>
             </React.Fragment>
@@ -58,14 +66,13 @@ export default function Members() {
           secondary={
             <React.Fragment>
               <Typography
-                sx={{ display: 'inline' }}
+                sx={{ display: "inline" }}
                 component="span"
                 variant="body2"
-                color="#FFF"
+                color="secondary"
               >
-                
-                <Link color="white" href="https://github.com/Jiashu0326">
-                https://github.com/Jiashu0326
+                <Link color="secondary" href="https://github.com/Jiashu0326">
+                  https://github.com/Jiashu0326
                 </Link>
               </Typography>
             </React.Fragment>
@@ -81,14 +88,13 @@ export default function Members() {
           secondary={
             <React.Fragment>
               <Typography
-                sx={{ display: 'inline' }}
+                sx={{ display: "inline" }}
                 component="span"
                 variant="body2"
-                color="#FFF"
+                color="secondary"
               >
-                
-                <Link color="white" href="https://github.com/MiracleLinzzz">
-                https://github.com/MiracleLinzzz
+                <Link color="secondary" href="https://github.com/MiracleLinzzz">
+                  https://github.com/MiracleLinzzz
                 </Link>
               </Typography>
             </React.Fragment>

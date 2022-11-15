@@ -1,16 +1,21 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import Toolbar from '@mui/material/Toolbar';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import * as React from "react";
+import PropTypes from "prop-types";
+import Toolbar from "@mui/material/Toolbar";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 
 function Header(props) {
   const { title } = props;
 
   return (
     <React.Fragment>
-      <Toolbar sx={{ borderBottom: 1, borderColor: 'divider' }} style={{ background: 'black', opacity: 0.9}}>
-        <Button variant="outlined" size="small">Subscribe</Button>
+      <Toolbar
+        sx={{ borderBottom: 1, borderColor: "divider" }}
+        style={{ background: "black", opacity: 0.9 }}
+      >
+        <Button variant="outlined" size="small">
+          Subscribe
+        </Button>
         <Typography
           component="h2"
           variant="h5"
@@ -28,9 +33,8 @@ function Header(props) {
       <Toolbar
         component="nav"
         variant="dense"
-        sx={{ justifyContent: 'space-between', overflowX: 'auto' }}
-      >
-      </Toolbar>
+        sx={{ justifyContent: "space-between", overflowX: "auto" }}
+      ></Toolbar>
     </React.Fragment>
   );
 }
@@ -40,8 +44,14 @@ Header.propTypes = {
     PropTypes.shape({
       title: PropTypes.string.isRequired,
       url: PropTypes.string.isRequired,
-    }),
-  ).isRequired,
+    })
+  ),
+  // sections: PropTypes.arrayOf(
+  //   PropTypes.shape({
+  //     title: PropTypes.string.isRequired,
+  //     url: PropTypes.string.isRequired,
+  //   })
+  // ).isRequired,
   title: PropTypes.string.isRequired,
 };
 
