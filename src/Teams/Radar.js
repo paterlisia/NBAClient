@@ -55,7 +55,8 @@ class RadarChart extends React.Component {
       <div id="chart">
         <ReactApexChart options={this.state.options} series={this.state.series} type="radar" height={350} />
         <Button type="primary">
-          <Link to="/team1">到team1 </Link>
+          <Link style={{ textDecoration:'none'}}
+          to="/team1">到team1 </Link>
         </Button>
       </div>
       

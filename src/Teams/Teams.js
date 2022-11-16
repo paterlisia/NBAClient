@@ -23,12 +23,11 @@ import {createRoot} from 'react-dom/client';
 // import ReactApexChart from 'apexcharts'
 import ReactApexChart from "react-apexcharts";
 import axios from 'axios';
-import Fucks from "./Fucks";
+import AllTeams from "./AllTeams";
 // internal component
 import RadarChart from "./Radar_func";
-import Shits from "./details";
 // import HighlightCardDemo from "./CustomCard";
-import HighlightCardDemo from "./carddemo";
+import NBAAutoComplete from "./NBAAutoComplete";
 import {useStyles} from "./CustomCard";
 
 // date type
@@ -48,9 +47,9 @@ export default function Teams() {
   return (
     <Router>
     <Routes>
-    <Route path="/" exact element={<HighlightCardDemo />} />
+    <Route path="/" exact element={<NBAAutoComplete />} />
     {/* <Route path="/" exact element={<Shits />} /> */}
-    <Route path="/team1" element={<Fucks />} />
+    <Route path="/team1" element={<AllTeams />} />
     <Route path="/team/:teamId" element={<RadarChart />} />
     
     </Routes>

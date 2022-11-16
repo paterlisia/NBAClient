@@ -12,6 +12,7 @@
     "@emotion/react": "latest",
     "@emotion/styled": "latest",
     "@material-ui/core": "^4.12.4",
+    "@material-ui/lab": "^4.0.0-alpha.61",
     "@mui-treasury/components": "^1.4.0",
     "@mui-treasury/layout": "^5.0.0",
     "@mui-treasury/styles": "^1.13.1",
