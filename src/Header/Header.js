@@ -4,8 +4,16 @@ import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
+
+import { useNavigate } from "react-router-dom";
+
 function Header(props) {
   const { title } = props;
+  const navigate = useNavigate();
+
+  const onClickLogin = () => {
+    navigate("/login");
+  }
 
   return (
     <React.Fragment>
@@ -21,9 +29,12 @@ function Header(props) {
         >
           {title}
         </Typography>
-        <Button variant="outlined" size="small">
+        
+        <form action="/login">
+        <Button variant="outlined" size="small" onClick = {onClickLogin}>
           Sign up
         </Button>
+        </form>
       </Toolbar>
       <Toolbar
         component="nav"
