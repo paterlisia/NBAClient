@@ -1,14 +1,14 @@
-import * as React from 'react';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
+import * as React from "react";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 
 // internal components
-import Home from '../Home/Home';
-import Teams from '../Teams/Teams';
-import Players from '../Players/Players';
-import Games from '../Games/Games';
+import Home from "../Home/Home";
+import Teams from "../Teams/Teams";
+import Players from "../Players/Players";
+import Games from "../Games/Games";
 // data type ref:
 // interface TabPanelProps {
 //   children?: React.ReactNode;
@@ -29,7 +29,7 @@ function TabPanel(props) {
     >
       {value === index && (
         <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
+          <Typography component="span">{children}</Typography>
         </Box>
       )}
     </div>
@@ -39,7 +39,7 @@ function TabPanel(props) {
 function a11yProps(index) {
   return {
     id: `vertical-tab-${index}`,
-    'aria-controls': `vertical-tabpanel-${index}`,
+    "aria-controls": `vertical-tabpanel-${index}`,
   };
 }
 
@@ -51,9 +51,7 @@ export default function VerticalTabs() {
   };
 
   return (
-    <Box
-      sx={{ flexGrow: 1, bgcolor: 'background.paper'}}
-    >
+    <Box sx={{ flexGrow: 1, bgcolor: "background.paper" }}>
       <Tabs
         orientation="horizontal"
         variant="scrollable"
@@ -69,7 +67,7 @@ export default function VerticalTabs() {
         <Home />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <Players/>
+        <Players />
       </TabPanel>
       <TabPanel value={value} index={2}>
         <Teams />
