@@ -37,7 +37,7 @@ function Header(props) {
         
         <form action="/login">
         <Button variant="outlined" size="small" onClick = {onClickLogin}>
-          Sign up
+          Sign in
         </Button>
         </form>
       </Toolbar>

@@ -1,59 +1,113 @@
 import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
+import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
-import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import Link from '@mui/material/Link';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+import { useNavigate } from "react-router-dom";
+
 
 const theme = createTheme();
 
 export default function Login() {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    console.log({
+      email: data.get('email'),
+      password: data.get('password'),
+    });
+  };
+  const navigate = useNavigate();
+
+  const onClickBack = () => {
+    navigate("/");
+  }
+
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <main>
-        {/* Hero unit */}
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
         <Box
           sx={{
-            bgcolor: 'background.paper',
-            pt: 8,
-            pb: 6,
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
           }}
         >
-          <Container maxWidth="sm">
-            <Typography
-              component="h1"
-              variant="h2"
-              align="center"
-              color="text.primary"
-              gutterBottom
+          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Sign in
+          </Typography>
+          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              autoFocus
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+            />
+            <FormControlLabel
+              control={<Checkbox value="remember" color="primary" />}
+              label="Remember me"
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
             >
-              this should be login page
-            </Typography>
-            <a href="https://ec2-18-219-149-124.us-east-2.compute.amazonaws.com:5011/login">Login with google account</a>
-            <Stack
-              sx={{ pt: 4 }}
-              direction="row"
-              spacing={2}
-              justifyContent="center"
+              Sign In
+            </Button>
+
+            <Button
+              fullWidth
+              variant="contained"
+              onClick = {onClickBack}
             >
-            </Stack>
-          </Container>
+              Back to home
+            </Button>
+            <Grid container>
+              <Grid item xs>
+                <Link href="https://ec2-18-219-149-124.us-east-2.compute.amazonaws.com:5011/login" variant="body2">
+                  Login with Google account
+                </Link>
+              </Grid>
+              <Grid item>
+                <Link href="#" variant="body2">
+                  {"Don't have an account? Sign Up"}
+                </Link>
+              </Grid>
+            </Grid>
+          </Box>
         </Box>
-      </main>
+      </Container>
     </ThemeProvider>
   );
 }
