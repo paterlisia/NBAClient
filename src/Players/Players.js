@@ -32,6 +32,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
 import PlayersService from "../service/PlayersService";
+import Portrait from "./components/Portrait";
 
 const theme = createTheme();
 
@@ -113,13 +114,17 @@ export default function Players() {
         <Typography gutterBottom variant="h5" component="h2">
           This should be Players page
         </Typography>
-        <Container sx={{ py: 8 }} maxWidth="md">
-          <div>{`value: ${
+        <Portrait
+          key={targetPlayer.PLAYER_ID}
+          player={targetPlayer}
+          teamId={statsList["CURRENT_TEAM"]}
+        />
+        <Container sx={{ py: 8 }} maxWidth="lg">
+          {/* <div>{`value: ${
             targetPlayer !== null
               ? `'${targetPlayer.PLAYER_ID}+${targetPlayer.FIRST_NAME}+${targetPlayer.LAST_NAME}'`
               : "null"
-          }`}</div>
-
+          }`}</div> */}
           <Grid container spacing={3}>
             <Grid item xs={12}>
               <Autocomplete

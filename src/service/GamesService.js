@@ -20,7 +20,7 @@ export default class GamesService {
       ...this.Config,
       ...{
         method: "post",
-        url: "http://127.0.0.1:5000/sth",
+        url: "http://127.0.0.1:5011/sth",
         data,
       },
     };
