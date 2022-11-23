@@ -114,11 +114,7 @@ export default function Players() {
         <Typography gutterBottom variant="h5" component="h2">
           This should be Players page
         </Typography>
-        <Portrait
-          key={targetPlayer.PLAYER_ID}
-          player={targetPlayer}
-          teamId={statsList["CURRENT_TEAM"]}
-        />
+
         <Container sx={{ py: 8 }} maxWidth="lg">
           {/* <div>{`value: ${
             targetPlayer !== null
@@ -185,6 +181,13 @@ export default function Players() {
               // </Typography>
               <>
                 {" "}
+                <Grid item xs={12}>
+                  <Portrait
+                    key={targetPlayer.PLAYER_ID}
+                    player={targetPlayer}
+                    stats={statsList}
+                  />
+                </Grid>
                 <Grid item xs={3} md={3}>
                   <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
                     <InputLabel

@@ -8,6 +8,7 @@ import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
+import { getMainColor, getFullName } from "nba-color";
 
 // styles
 import { createTheme, ThemeProvider } from "@mui/material/styles";
@@ -36,12 +37,32 @@ theme.typography.h1 = {
   },
 };
 
+function LightenDarkenColor(col, amt) {
+  var num = parseInt(col === undefined ? 0 : col.split("#")[1], 16);
+  var r = (num >> 16) + amt;
+  var b = ((num >> 8) & 0x00ff) + amt;
+  var g = (num & 0x0000ff) + amt;
+  var newColor = g | (b << 8) | (r << 16);
+  return "#" + newColor.toString(16);
+}
+
 class Portrait extends Component {
   state = {};
   render() {
     return (
       <ThemeProvider theme={theme}>
         <Grid container spacing={0} md={0}>
+          {console.log(
+            this.props.stats.CURRENT_TEAM === undefined
+              ? 0
+              : LightenDarkenColor(
+                  getMainColor(this.props.stats.CURRENT_TEAM).hex,
+                  -10
+                ),
+            this.props.stats.CURRENT_TEAM === undefined
+              ? 0
+              : getMainColor(this.props.stats.CURRENT_TEAM).hex
+          )}
           <Card
             sx={{
               display: "flex",
@@ -49,7 +70,13 @@ class Portrait extends Component {
               height: 2 / 3,
               margin: 0,
               padding: 0,
-              bgcolor: "#006bb6",
+              bgcolor:
+                this.props.stats.CURRENT_TEAM === undefined
+                  ? "#000000"
+                  : LightenDarkenColor(
+                      getMainColor(this.props.stats.CURRENT_TEAM).hex,
+                      20
+                    ),
             }}
           >
             <Grid item xs={4} lg={4} ml={"5%"}>
@@ -57,7 +84,7 @@ class Portrait extends Component {
                 <CardMedia
                   component="img"
                   sx={{ width: 1 / 3, height: 1 / 2 }}
-                  image={`https://cdn.nba.com/logos/nba/${this.props.teamId}/primary/L/logo.svg`}
+                  image={`https://cdn.nba.com/logos/nba/${this.props.stats.CURRENT_TEAM_ID}/primary/L/logo.svg`}
                   alt="Live from space album cover"
                 />
               </Box>
@@ -77,7 +104,10 @@ class Portrait extends Component {
                 md={0}
                 color="white"
               >
-                New York Knicks | #11 | {this.props.player.POSITION}
+                {this.props.stats.CURRENT_TEAM === undefined
+                  ? this.props.stats.CURRENT_TEAM
+                  : getFullName(this.props.stats.CURRENT_TEAM)}{" "}
+                | #11 |{this.props.player.POSITION}
               </Typography>
               <Typography variant="h1" ml={"20%"} mt={0} color="white">
                 {this.props.player.FIRST_NAME}
@@ -100,7 +130,17 @@ class Portrait extends Component {
             </Grid>
           </Card>
         </Grid>
-        <Borad player={this.props.player} />
+        <Borad
+          player={this.props.player}
+          color={
+            this.props.stats.CURRENT_TEAM === undefined
+              ? "#000000"
+              : LightenDarkenColor(
+                  getMainColor(this.props.stats.CURRENT_TEAM).hex,
+                  -5
+                )
+          }
+        />
       </ThemeProvider>
     );
   }

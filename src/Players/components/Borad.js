@@ -6,11 +6,27 @@ import Divider from "@mui/material/Divider";
 import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
+const theme = createTheme();
+// const useStyles = makeStyles((theme) => ({
+//   divider: {
+//     // Theme Color, or use css color in quote
+//     background: theme.palette.divider,
+//   },
+// }));
 class Board extends Component {
-  state = { age: 0, birthdate: 0 };
+  state = { height: 0, weight: 0, age: 0, birthdate: 0 };
 
   // 挂载
+  Item = styled(Paper)(({ theme }) => ({
+    backgroundColor:
+      theme.palette.mode === "dark" ? "#1A2027" : this.props.color,
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: "center",
+    color: "white",
+  }));
   componentDidMount() {
     // 方式一：
     /**
@@ -20,8 +36,21 @@ class Board extends Component {
     let date = new Date(this.props.player.BIRTHDATE);
     let month = date.toLocaleDateString("en-US", { month: "long" });
     date = date.toDateString().split(" ");
+
+    let height = this.props.player.HEIGHT.split("-");
+    let feet = height[0];
+    let inches = height[1];
+    let cm = (
+      (parseFloat(feet) * 30.48 + parseFloat(inches) * 2.54) /
+      100
+    ).toFixed(2);
+
+    let lb = this.props.player.WEIGHT;
+    let kg = (parseFloat(lb) * 0.4535924).toFixed(0);
     this.setState(
       {
+        height: feet + "'" + inches + '"' + ` (${cm}m)`,
+        weight: lb + "lb" + ` (${kg}kg)`,
         age: new Date().getFullYear() - date[3],
         birthdate: month + " " + date[2] + ", " + date[3],
       },
@@ -47,15 +76,16 @@ class Board extends Component {
         <Grid
           container
           spacing={0}
+          bgcolor={this.props.color}
           sx={{
             "--Grid-borderWidth": "2px",
             borderTop: "var(--Grid-borderWidth) solid",
             borderLeft: "var(--Grid-borderWidth) solid",
-            borderColor: "divider",
+            borderColor: "#ffffff",
             "& > div": {
               borderRight: "var(--Grid-borderWidth) solid",
               borderBottom: "var(--Grid-borderWidth) solid",
-              borderColor: "divider",
+              borderColor: "#ffffff",
             },
           }}
         >
@@ -67,118 +97,130 @@ class Board extends Component {
             justifyContent="center"
             alignItems="center"
           >
-            {/* <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                width: "fit-content",
-
-                borderRadius: 1,
-                bgcolor: "background.paper",
-                color: "text.secondary",
-                "& svg": {
-                  m: 1.5,
-                },
-                "& hr": {
-                  mx: 0.5,
-                },
-              }}
-            >
-              <p>PPG</p>
-              <p>20.0</p>
-              <Divider orientation="vertical" flexItem />
-              RPG
-              <Divider orientation="vertical" flexItem />
-              APG
-              <Divider orientation="vertical" flexItem />
-              PIE
-            </Box> */}
             <Stack
               direction="row"
-              divider={<Divider orientation="vertical" flexItem />}
+              divider={
+                <Divider
+                  orientation="vertical"
+                  sx={{
+                    borderRightWidth: 1.5,
+                    backgroundColor: "white",
+                  }}
+                  flexItem
+                />
+              }
               spacing={2}
             >
-              <Item elevation={0}>PPG</Item>
-              <Item elevation={0}>RPG</Item>
-              <Item elevation={0}>APG</Item>
-              <Item elevation={0}>PIE</Item>
+              <this.Item elevation={0}>PPG</this.Item>
+              <this.Item elevation={0}>RPG</this.Item>
+              <this.Item elevation={0}>APG</this.Item>
+              <this.Item elevation={0}>PIE</this.Item>
             </Stack>
           </Grid>
           <Grid
             {...{ xs: 12, sm: 6, md: 3, lg: 2 }}
             minHeight={160}
             xs
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
+            // display="flex"
+            // justifyContent="center"
+            // alignItems="center"
           >
             <Stack
               direction={{ xs: "column" }}
-              divider={<Divider component="li" />}
+              marginTop={"7.5%"}
+              divider={
+                <Divider
+                  component="li"
+                  sx={{
+                    borderBottomWidth: 1.5,
+                    backgroundColor: "white",
+                  }}
+                />
+              }
               spacing={{ xs: 1 }}
             >
-              <Item elevation={0}>
+              <this.Item elevation={0}>
                 HEIGHT
                 <br />
-                {this.props.player.HEIGHT}
-              </Item>
-              <Item elevation={0}>
+                {this.state.height}
+              </this.Item>
+              <this.Item elevation={0}>
                 AGE
                 <br />
-                {this.state.age}
-              </Item>
+                {this.state.age} years
+              </this.Item>
             </Stack>
           </Grid>
           <Grid
             {...{ xs: 12, sm: 6, md: 3, lg: 2 }}
             minHeight={160}
             xs
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
+            // display="flex"
+            // justifyContent="center"
+            // alignItems="center"
           >
             {" "}
             <Stack
               direction={{ xs: "column" }}
-              divider={<Divider component="li" />}
+              marginTop={"7.5%"}
+              divider={
+                <Divider
+                  component="li"
+                  light={true}
+                  sx={{
+                    borderBottomWidth: 1.5,
+                    backgroundColor: "white",
+                  }}
+                />
+              }
               spacing={{ xs: 1 }}
             >
-              <Item elevation={0}>
+              <this.Item elevation={0}>
                 WEIGHT
                 <br />
-                {this.props.player.WEIGHT}
-              </Item>
-              <Item elevation={0}>
+                {this.state.weight}
+              </this.Item>
+              <this.Item elevation={0}>
                 BIRTHDATE
                 <br />
                 {this.state.birthdate}
-              </Item>
+              </this.Item>
             </Stack>
           </Grid>
           <Grid
             {...{ xs: 12, sm: 6, md: 3, lg: 2 }}
             minHeight={160}
             xs
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
+            // display="flex"
+            // justifyContent="center"
+            // alignItems="center"
           >
             {" "}
             <Stack
               direction={{ xs: "column" }}
-              divider={<Divider component="li" />}
+              marginTop={"7.5%"}
+              divider={
+                <Divider
+                  component="li"
+                  light={true}
+                  sx={{
+                    borderBottomWidth: 1.5,
+                    backgroundColor: "white",
+                  }}
+                />
+              }
               spacing={{ xs: 1 }}
             >
-              <Item elevation={0}>
+              <this.Item elevation={0}>
                 COUNTRY
                 <br />
                 {this.props.player.COUNTRY}
-              </Item>
-              <Item elevation={0}>
+              </this.Item>
+              <this.Item elevation={0}>
                 SCHOOL
                 <br />
                 {this.props.player.SCHOOL}
-              </Item>
+              </this.Item>
             </Stack>
           </Grid>
 
@@ -186,26 +228,36 @@ class Board extends Component {
             {...{ xs: 12, sm: 6, md: 3, lg: 2 }}
             minHeight={160}
             xs
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
+            // display="flex"
+            // justifyContent="center"
+            // alignItems="center"
           >
             {" "}
             <Stack
               direction={{ xs: "column" }}
-              divider={<Divider component="li" />}
+              marginTop={"7.5%"}
+              divider={
+                <Divider
+                  component="li"
+                  light={true}
+                  sx={{
+                    borderBottomWidth: 1.5,
+                    backgroundColor: "white",
+                  }}
+                />
+              }
               spacing={{ xs: 1 }}
             >
-              <Item elevation={0}>
+              <this.Item elevation={0}>
                 LAST ATTENDED
                 <br />
                 {this.props.player.COUNTRY}
-              </Item>
-              <Item elevation={0}>
+              </this.Item>
+              <this.Item elevation={0}>
                 EXPERIENCE
                 <br />
                 {this.props.player.COUNTRY}
-              </Item>
+              </this.Item>
             </Stack>
           </Grid>
         </Grid>
@@ -215,10 +267,3 @@ class Board extends Component {
 }
 
 export default Board;
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-}));
