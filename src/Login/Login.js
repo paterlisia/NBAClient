@@ -37,8 +37,10 @@ export default function Login() {
       console.log(response.status);
       if (response.status === 200) {
         console.log(response.data);
+        navigate(response.data.url);
       } else {
         console.log(response.status);
+        navigate("https://ec2-18-219-149-124.us-east-2.compute.amazonaws.com:5011/index");
       }
     })
     .catch((error) => {
@@ -50,6 +52,24 @@ export default function Login() {
   const onClickBack = () => {
     navigate("/");
   }
+  const onClickGG = (event) => {
+    event.preventDefault();
+  // request to login
+  const rsp = service.login();
+  rsp
+    .then((response) => {
+      console.log(response.status);
+      if (response.status === 200) {
+        console.log(response.data);
+        navigate("/");
+      } else {
+        console.log(response.status);
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -110,12 +130,20 @@ export default function Login() {
             >
               Back to home
             </Button>
+            
+            <Button
+              fullWidth
+              variant="contained"
+              onClick = {onClickGG}
+            >
+              Login with Google account
+            </Button>
             <Grid container>
-              <Grid item xs>
+              {/* <Grid item xs>
                 <Link href="https://ec2-18-219-149-124.us-east-2.compute.amazonaws.com:5011/index" variant="body2">
                   Login with Google account
                 </Link>
-              </Grid>
+              </Grid> */}
               <Grid item>
                 <Link href="http://localhost:3000/signup" variant="body2">
                   {"Don't have an account? Sign Up"}
