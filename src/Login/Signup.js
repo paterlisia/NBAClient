@@ -3,22 +3,20 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
+import Alert from '@mui/material/Alert';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+import UserService from '../service/UserService';
 
 import { useNavigate } from "react-router-dom";
 
 
 const theme = createTheme();
-
+const service = new UserService();
 export default function Signup() {
 
   // TODO: signup request
@@ -29,13 +27,27 @@ export default function Signup() {
       email: data.get('email'),
       password: data.get('password'),
     });
+    // request to signup
+    const rsp = service.signup(data);
+    rsp
+      .then((response) => {
+        console.log(response.status);
+        if (response.status === 200) {
+          return (<Alert severity="success">Successefully sign up!</Alert>)
+        } else {
+          console.log(response.status);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     // Back to login after sign up
     navigate("/login");
   };
   const navigate = useNavigate();
 
   const onClickBack = () => {
-    navigate("/");
+    navigate("/login");
   }
 
   return (
@@ -65,6 +77,46 @@ export default function Signup() {
               label="Email Address"
               name="email"
               autoComplete="email"
+              autoFocus
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="firstName"
+              label="First name"
+              name="firstName"
+              autoComplete="first name"
+              autoFocus
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="lastName"
+              label="Last name"
+              name="lastName"
+              autoComplete="last name"
+              autoFocus
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="address"
+              label="Address"
+              name="address"
+              autoComplete="address"
+              autoFocus
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="zip"
+              label="Zip"
+              name="zip"
+              autoComplete="zip"
               autoFocus
             />
             <TextField
