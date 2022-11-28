@@ -19,8 +19,9 @@ import { useNavigate } from "react-router-dom";
 
 const theme = createTheme();
 
-export default function Login() {
-    // TODO: login request
+export default function Signup() {
+
+  // TODO: signup request
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -28,6 +29,8 @@ export default function Login() {
       email: data.get('email'),
       password: data.get('password'),
     });
+    // Back to login after sign up
+    navigate("/login");
   };
   const navigate = useNavigate();
 
@@ -51,7 +54,7 @@ export default function Login() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Sign Up
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
@@ -74,17 +77,13 @@ export default function Login() {
               id="password"
               autoComplete="current-password"
             />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
             <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign In
+              Sign Up
             </Button>
 
             <Button
@@ -92,20 +91,8 @@ export default function Login() {
               variant="contained"
               onClick = {onClickBack}
             >
-              Back to home
+              Cancel
             </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href="https://ec2-18-219-149-124.us-east-2.compute.amazonaws.com:5011/index" variant="body2">
-                  Login with Google account
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href="http://localhost:3000/signup" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
-            </Grid>
           </Box>
         </Box>
       </Container>
