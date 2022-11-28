@@ -13,12 +13,14 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+import UserService from '../service/UserService';
 
 import { useNavigate } from "react-router-dom";
 
 
 const theme = createTheme();
 
+const service = new UserService();
 export default function Login() {
     // TODO: login request
   const handleSubmit = (event) => {
@@ -27,6 +29,20 @@ export default function Login() {
     console.log({
       email: data.get('email'),
       password: data.get('password'),
+    });
+  // request to login
+  const rsp = service.login();
+  rsp
+    .then((response) => {
+      console.log(response.status);
+      if (response.status === 200) {
+        console.log(response.data);
+      } else {
+        console.log(response.status);
+      }
+    })
+    .catch((error) => {
+      console.log(error);
     });
   };
   const navigate = useNavigate();
