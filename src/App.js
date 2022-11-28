@@ -6,6 +6,7 @@ import Header from "./Header/Header";
 import StickyFooter from "./Footer/Footer";
 import TabPanel from "./Tabs/TabPanel";
 import Login from './Login/Login';
+import Signup from "./Login/Signup";
 
 // Router
 import {
@@ -31,6 +32,7 @@ export default function App() {
           with exact path "/login", in component 
           props we passes the imported component*/}
           <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
           
         </Routes>
           {/* <Navigate to="/" /> */}
