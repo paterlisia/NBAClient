@@ -7,6 +7,10 @@ export default class UserService {
     const config = {
       ...this.Config,
       ...{
+        headers: {
+            "Access-Control-Allow-Origin": "*",
+            "crossorigin": true,
+          },
         method: "get",
         url: `https://ec2-18-219-149-124.us-east-2.compute.amazonaws.com:5011/index`,
       },
