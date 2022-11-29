@@ -40,7 +40,7 @@ export default function Login() {
         navigate(response.data.url);
       } else {
         console.log(response.status);
-        navigate("https://ec2-18-219-149-124.us-east-2.compute.amazonaws.com:5011/index");
+        // navigate("https://ec2-18-219-149-124.us-east-2.compute.amazonaws.com:5011/index");
       }
     })
     .catch((error) => {
@@ -60,10 +60,18 @@ export default function Login() {
     .then((response) => {
       console.log(response.status);
       if (response.status === 200) {
+        // console.log(response.data);
         console.log(response.data);
-        navigate("/");
+        // if (response.data.status === "unauthorized") {
+        //     console.log("???");
+        //     window.location.replace('https://ec2-18-219-149-124.us-east-2.compute.amazonaws.com:5011/login');
+        //     // navigate("https://ec2-18-219-149-124.us-east-2.compute.amazonaws.com:5011/login");
+        // } else {
+        //     navigate("/");
+        // }
       } else {
         console.log(response.status);
+        
       }
     })
     .catch((error) => {
@@ -130,7 +138,7 @@ export default function Login() {
             >
               Back to home
             </Button>
-            
+
             <Button
               fullWidth
               variant="contained"
