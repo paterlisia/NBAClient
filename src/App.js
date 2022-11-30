@@ -16,10 +16,13 @@ import {
 } from "react-router-dom";
 
 export default function App() {
+  // user login status
+  const [status, setStatus] = React.useState(false);
+  const [name, setName] = React.useState("");
   return (
     <div>
         <Router>
-      <Header title="NBA STATS" />
+      <Header title="NBA STATS" status={status} name={name}/>
       <Box sx={{ my: 4 }}>
         {/* <TabPanel /> */}
         <Routes>
@@ -31,7 +34,7 @@ export default function App() {
           {/* This route is for about component 
           with exact path "/login", in component 
           props we passes the imported component*/}
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login setStatus={setStatus} setName={setName}/>} />
           <Route path="/signup" element={<Signup />} />
           
         </Routes>

@@ -7,6 +7,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
+import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
@@ -21,7 +22,8 @@ import { useNavigate } from "react-router-dom";
 const theme = createTheme();
 
 const service = new UserService();
-export default function Login() {
+export default function Login(props) {
+  const { setName, setStatus } = props;
     // TODO: login request
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -31,13 +33,22 @@ export default function Login() {
       password: data.get('password'),
     });
   // request to login
-  const rsp = service.login();
+  const rsp = service.login(data);
   rsp
     .then((response) => {
       console.log(response.status);
       if (response.status === 200) {
         console.log(response.data);
-        navigate(response.data.url);
+        if (response.data.status === "valid") {
+          setName(response.data.firstName);
+          setStatus(true);
+          navigate("/");
+          // return (<Alert severity="success">Successefully sign in!</Alert>)
+        } else {
+          if (response.data.comment === "invalid password")
+          return (<Alert severity="error">Invalid password, try again~</Alert>)
+        }
+        // navigate(response.data.url);
       } else {
         console.log(response.status);
         // navigate("https://ec2-18-219-149-124.us-east-2.compute.amazonaws.com:5011/index");
@@ -55,7 +66,7 @@ export default function Login() {
   const onClickGG = (event) => {
     event.preventDefault();
   // request to login
-  const rsp = service.login();
+  const rsp = service.loginGoogle();
   rsp
     .then((response) => {
       console.log(response.status);
@@ -135,6 +146,7 @@ export default function Login() {
               fullWidth
               variant="contained"
               onClick = {onClickBack}
+              sx={{ mb: 2 }}
             >
               Back to home
             </Button>
