@@ -15,6 +15,8 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Link from "@mui/material/Link";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
+import TableRow from "@mui/material/TableRow";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
@@ -23,16 +25,12 @@ import NativeSelect from "@mui/material/NativeSelect";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import { styled } from "@mui/material/styles";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell, { tableCellClasses } from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
+
 import Paper from "@mui/material/Paper";
 
 import PlayersService from "../service/PlayersService";
 import Portrait from "./components/Portrait";
+import StatsTable from "./components/StatsTable";
 
 const theme = createTheme();
 
@@ -99,8 +97,9 @@ export default function Players() {
         });
         res.push(createData(...temp));
       });
+      console.log(res);
       setValue(res);
-      console.log(value);
+      console.log(statsList[newValue]);
     } else {
       setValue([]);
       console.log(value);
@@ -116,11 +115,6 @@ export default function Players() {
         </Typography>
 
         <Container sx={{ py: 8 }} maxWidth="lg">
-          {/* <div>{`value: ${
-            targetPlayer !== null
-              ? `'${targetPlayer.PLAYER_ID}+${targetPlayer.FIRST_NAME}+${targetPlayer.LAST_NAME}'`
-              : "null"
-          }`}</div> */}
           <Grid container spacing={3}>
             <Grid item xs={12}>
               <Autocomplete
@@ -176,9 +170,6 @@ export default function Players() {
             {targetPlayer === "" ? (
               <> </>
             ) : (
-              // <Typography gutterBottom variant="h5" component="h2">
-              //   There is game today
-              // </Typography>
               <>
                 {" "}
                 <Grid item xs={12}>
@@ -244,57 +235,10 @@ export default function Players() {
                     There is no stats of the player
                   </Typography>
                 ) : (
-                  <Grid item xs={12}>
-                    <TableContainer component={Paper}>
-                      <Table
-                        sx={{ minWidth: 700 }}
-                        aria-label="customized table"
-                      >
-                        <TableHead>
-                          <TableRow>
-                            <StyledTableCell>SEASON</StyledTableCell>
-                            <StyledTableCell align="right">
-                              TEAM
-                            </StyledTableCell>
-                            <StyledTableCell align="right">
-                              AVG_SCORE
-                            </StyledTableCell>
-                            <StyledTableCell align="right">
-                              AVG_REB
-                            </StyledTableCell>
-                            <StyledTableCell align="right">
-                              AVG_ASSIT
-                            </StyledTableCell>
-                          </TableRow>
-                        </TableHead>
-                        <TableBody>
-                          {value.map((item) => (
-                            <StyledTableRow key={item.SEASON}>
-                              <StyledTableCell component="th" scope="row">
-                                {item.SEASON}
-                              </StyledTableCell>
-                              <StyledTableCell align="right">
-                                {item.TEAM}
-                              </StyledTableCell>
-                              <StyledTableCell align="right">
-                                {item.AVG_SCORE}
-                              </StyledTableCell>
-                              <StyledTableCell align="right">
-                                {item.AVG_REB}
-                              </StyledTableCell>
-                              <StyledTableCell align="right">
-                                {item.AVG_ASSIT}
-                              </StyledTableCell>
-                            </StyledTableRow>
-                          ))}
-                        </TableBody>
-                      </Table>
-                    </TableContainer>
-                  </Grid>
+                  <StatsTable value={value} />
                 )}
               </>
             )}
-
             {/* End hero unit */}
           </Grid>
         </Container>
@@ -323,13 +267,73 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(SEASON, TEAM, AVG_SCORE, AVG_REB, AVG_ASSIT) {
-  return { SEASON, TEAM, AVG_SCORE, AVG_REB, AVG_ASSIT };
+function createData(
+  SEASON,
+  TEAM,
+  MIN,
+  PTS,
+  FGM,
+  FGA,
+  FG_PCT,
+  FG3M,
+  FG3A,
+  FG3_PCT,
+  FTM,
+  FTA,
+  FT_PCT,
+  OREB,
+  DREB,
+  AST,
+  STL,
+  BLK,
+  TOs,
+  PF,
+  PLUS_MINUS
+) {
+  return {
+    SEASON,
+    TEAM,
+    MIN,
+    PTS,
+    FGM,
+    FGA,
+    FG_PCT,
+    FG3M,
+    FG3A,
+    FG3_PCT,
+    FTM,
+    FTA,
+    FT_PCT,
+    OREB,
+    DREB,
+    AST,
+    STL,
+    BLK,
+    TOs,
+    PF,
+    PLUS_MINUS,
+  };
 }
 const keys = [
   "SEASON",
-  "TEAM_ABBREVIATION",
-  "AVG_SCORE",
-  "AVG_REB",
-  "AVG_ASSIT",
+  "ABBREVIATION",
+  "MIN",
+  "PTS",
+  "FGM",
+  "FGA",
+  "FG_PCT",
+  "FG3M",
+  "FG3A",
+  "FG3_PCT",
+  "FTM",
+  "FTA",
+  "FT_PCT",
+  "OREB",
+  "DREB",
+  "AST",
+  "STL",
+  "BLK",
+  "TOs",
+  "PF",
+  "PLUS_MINUS",
 ];

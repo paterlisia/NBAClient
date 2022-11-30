@@ -53,12 +53,12 @@ class Board extends Component {
         weight: lb + "lb" + ` (${kg}kg)`,
         age: new Date().getFullYear() - date[3],
         birthdate: month + " " + date[2] + ", " + date[3],
-      },
-      () => {
-        console.log(this.state.age, this.state.birthdate, "start"); //1
       }
+      // () => {
+      //   console.log(this.state.age, this.state.birthdate, "start"); //1
+      // }
     );
-    console.log(this.state.count, "end"); //0
+    // console.log(this.state.count, "end"); //0
     // 方式二：
     // this.setState(
     //   (prevState, prevProps) => ({
@@ -217,9 +217,15 @@ class Board extends Component {
                 {this.props.player.COUNTRY}
               </this.Item>
               <this.Item elevation={0}>
-                SCHOOL
+                DRAFT
                 <br />
-                {this.props.player.SCHOOL}
+                {this.props.player.DRAFT_YEAR === "Undrafted"
+                  ? "None"
+                  : this.props.player.DRAFT_YEAR +
+                    " R" +
+                    this.props.player.DRAFT_ROUND +
+                    " Pick " +
+                    this.props.player.DRAFT_NUMBER}
               </this.Item>
             </Stack>
           </Grid>
@@ -251,12 +257,14 @@ class Board extends Component {
               <this.Item elevation={0}>
                 LAST ATTENDED
                 <br />
-                {this.props.player.COUNTRY}
+                {this.props.player.SCHOOL}
               </this.Item>
               <this.Item elevation={0}>
                 EXPERIENCE
                 <br />
-                {this.props.player.COUNTRY}
+                {this.props.player.EXPERIENCE === "None"
+                  ? "None"
+                  : this.props.player.EXPERIENCE + " Years"}
               </this.Item>
             </Stack>
           </Grid>
