@@ -8,7 +8,7 @@ import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
 
 function Header(props) {
-  const { title } = props;
+  // const { title, status, name } = props;
   const navigate = useNavigate();
 
   const onClickLogin = () => {
@@ -32,12 +32,12 @@ function Header(props) {
           noWrap
           sx={{ flex: 1 }}
         >
-          {title}
+          {props.title}
         </Typography>
         
         <form action="/login">
         <Button variant="outlined" size="small" onClick = {onClickLogin}>
-          Sign in
+          {props.status ? props.name : "Sign in"}
         </Button>
         </form>
       </Toolbar>
