@@ -65,6 +65,9 @@ export default function Login(props) {
   }
   const onClickGG = (event) => {
     event.preventDefault();
+
+  window.location.replace("https://ec2-18-219-149-124.us-east-2.compute.amazonaws.com:5011/login/google");
+  setName("Google User");
   // request to login
   const rsp = service.loginGoogle();
   rsp
