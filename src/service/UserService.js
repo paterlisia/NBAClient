@@ -20,9 +20,10 @@ export default class UserService {
     const config = {
       ...this.Config,
       ...{
-        headers: {
-          "access-control-allow-origin": "*",
-        },
+        // headers: {
+        //   "Access-Control-Allow-Origin": "*",
+        //   // 'Access-Control-Allow-Credentials':true,
+        // },
         // headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         method: "get",
         url: `https://ec2-18-219-149-124.us-east-2.compute.amazonaws.com:5011/index`,
