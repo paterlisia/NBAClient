@@ -35,6 +35,7 @@ export default function Games() {
   const dateInit = dayjs();
   const [value, setValue] = useState(dateInit);
   const [gamesList, setGamesList] = useState({});
+  const [url, setUrl] = useState("");
 
   const service = new GamesService();
   useEffect(() => {
@@ -58,7 +59,9 @@ export default function Games() {
   const handleChange = (dateDayjs) => {
     setValue(dateDayjs);
     // convert date to timestamp
+    var date = dateDayjs.format("YYYY-MM-DD");
     var myDate = dateDayjs.format("YYYYMMDD");
+    setUrl("https://www.nba.com/games?date=" + date);
     // send get reqeust
     const rsp = service.getGamesByDate(myDate);
     rsp
@@ -70,6 +73,13 @@ export default function Games() {
         setGamesList([]);
       });
   };
+
+  // click on learn more events
+  // const handleLearnMore = () => {
+  //   // convert date to timestamp
+  //   var date = value.format("YYYY-MM-DD");
+  //   window.open("https://www.nba.com/games?date=" + date, '_blank');
+  // }
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -184,7 +194,7 @@ export default function Games() {
                             sx={{ height: 38, width: 38 }}
                           />
                         </IconButton>
-                        <Button size="small">Learn More</Button>
+                        <Button size="small" href={url}>Learn More</Button>
                       </Box>
                     </Box>
                     <CardMedia
