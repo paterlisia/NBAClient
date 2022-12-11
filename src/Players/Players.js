@@ -108,9 +108,6 @@ export default function Players() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <main>
-        <Typography gutterBottom variant="h5" component="h2">
-          This should be Players page
-        </Typography>
 
         <Container sx={{ py: 8 }} maxWidth="lg">
           <Grid container spacing={3}>
