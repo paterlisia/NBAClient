@@ -45,15 +45,14 @@ export default function Teams() {
   
 
   return (
-    <Router>
+    
     <Routes>
     <Route path="/" exact element={<NBAAutoComplete />} />
     {/* <Route path="/" exact element={<Shits />} /> */}
-    <Route path="/team1" element={<AllTeams />} />
+    {/* <Route path="/team1" element={<AllTeams />} /> */}
     <Route path="/team/:teamId" element={<RadarChart />} />
-    
     </Routes>
-    </Router>
+    
   );
 }
 
