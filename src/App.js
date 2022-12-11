@@ -7,7 +7,7 @@ import StickyFooter from "./Footer/Footer";
 import TabPanel from "./Tabs/TabPanel";
 import Login from './Login/Login';
 import Signup from "./Login/Signup";
-
+import RadarChart from "./Teams/Radar_func";
 // Router
 import {
   BrowserRouter as Router,
@@ -36,7 +36,8 @@ export default function App() {
           props we passes the imported component*/}
           <Route path="/login" element={<Login setStatus={setStatus} setName={setName}/>} />
           <Route path="/signup" element={<Signup />} />
-          
+          <Route path="/team/:teamId" element={<RadarChart />} />
+
         </Routes>
           {/* <Navigate to="/" /> */}
         <StickyFooter />
