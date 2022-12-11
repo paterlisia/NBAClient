@@ -8,7 +8,8 @@ export default class PlayersService {
       ...this.Config,
       ...{
         method: "get",
-        url: `http://127.0.0.1:5000/stats/player/${id}`,
+        url: `http://nbaplayers-env.eba-he9dpzzs.us-east-1.elasticbeanstalk.com/stats/player/${id}`,
+        // url: `http://127.0.0.1:5000/stats/player/${id}`,
       },
     };
     return await axios(config);
@@ -20,7 +21,8 @@ export default class PlayersService {
       ...this.Config,
       ...{
         method: "get",
-        url: `http://127.0.0.1:5000/stats/player`,
+        url: `http://nbaplayers-env.eba-he9dpzzs.us-east-1.elasticbeanstalk.com/stats/player`,
+        // url: `http://127.0.0.1:5000/stats/player`,
       },
     };
     return await axios(config);
@@ -33,7 +35,8 @@ export default class PlayersService {
       ...this.Config,
       ...{
         method: "post",
-        url: "http://127.0.0.1:5000/sth",
+        url: "http://nbaplayers-env.eba-he9dpzzs.us-east-1.elasticbeanstalk.com/sth",
+        // url: "http://127.0.0.1:5000/sth",
         data,
       },
     };

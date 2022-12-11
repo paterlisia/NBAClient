@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Box from "@mui/material/Box";
-import Grid from "@mui/material/Unstable_Grid2";
+import Grid from "@mui/material/Grid";
 import Divider from "@mui/material/Divider";
 
 import Stack from "@mui/material/Stack";

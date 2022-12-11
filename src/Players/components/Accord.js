@@ -4,6 +4,7 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import Box from "@mui/material/Box";
 
 export default function Accordions() {
   const [expanded, setExpanded] = React.useState(false);
@@ -28,13 +29,16 @@ export default function Accordions() {
       </AccordionSummary>
       <AccordionDetails>
         <Typography>
-          GPGames PlayedMINMinutes PlayedPTSPointsFGMField Goals MadeFGAField
-          Goals AttemptedFG%Field Goal Percentage3PM3 Point Field Goals Made3PA3
-          Point Field Goals Attempted3P%3 Point Field Goal PercentageFTMFree
-          Throws MadeFTAFree Throws AttemptedFT%Free Throw
-          PercentageOREBOffensive ReboundsDREBDefensive
-          ReboundsREBReboundsASTAssistsTOVTurnoversSTLStealsBLKBlocksPFPersonal
-          FoulsFPFantasy PointsDD2Double DoublesTD3Triple Doubles+/-Plus-Minus
+          <Box
+            component="img"
+            sx={{
+              paddingLeft: "4%",
+              maxHeight: "100%",
+              maxWidth: "100%",
+            }}
+            alt="The house from the offer."
+            src={require("../static/glossary.png")}
+          />
         </Typography>
       </AccordionDetails>
     </Accordion>
