@@ -1,5 +1,5 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
+import Box from '@mui/material/Box';
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import Divider from "@mui/material/Divider";
@@ -8,31 +8,32 @@ import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 
-export default function LeaderPlayers(props) {
-  const { player } = props;
+export default function LeaderPlayers() {
   return (
     <Box sx={{ width: "100%", maxWidth: 200, bgcolor: "background.paper" }}>
-      <br />
-      <Typography component="div" color="text.primary" align="center">
+        <br/>
+      <Typography
+        component="div"
+        color="text.primary"
+        align="center"
+      >
         GAME LEADERS
       </Typography>
-      <br />
+      <br/>
       <Divider />
       <List sx={{ width: "100%", maxWidth: 200, bgcolor: "background.paper" }}>
         <ListItem alignItems="flex-start">
           <ListItemAvatar>
             <Avatar
-              alt={player[0].mvp.name}
-              src="/static/images/avatar/1.jpg"
+              alt="Kristaps Porzingis"
+              src="../static/images/avatar/1.jpg"
             />
           </ListItemAvatar>
           <ListItemText
-            primary={player[0].mvp.name}
+            primary="Kristaps Porzingis"
             secondary={
               <React.Fragment>
-                Team | Points
-                <br />
-                {player[0].name} | {player[0].mvp.pts}
+                {"WAS | #6 |F-C"}
               </React.Fragment>
             }
           />
@@ -40,18 +41,13 @@ export default function LeaderPlayers(props) {
         <Divider variant="inset" component="li" />
         <ListItem alignItems="flex-start">
           <ListItemAvatar>
-            <Avatar
-              alt={player[1].mvp.name}
-              src="/static/images/avatar/2.jpg"
-            />
+            <Avatar alt="James Hardon" src="/static/images/avatar/2.jpg" />
           </ListItemAvatar>
           <ListItemText
-            primary={player[1].mvp.name}
+            primary="James Hardon"
             secondary={
               <React.Fragment>
-                Team | Points
-                <br />
-                {player[1].name} | {player[1].mvp.pts}
+                {"PHI | #1 | G"}
               </React.Fragment>
             }
           />

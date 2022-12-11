@@ -7,19 +7,24 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
+import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+import UserService from '../service/UserService';
 
 import { useNavigate } from "react-router-dom";
 
 
 const theme = createTheme();
 
-export default function Login() {
+const service = new UserService();
+export default function Login(props) {
+  const { setName, setStatus } = props;
+    // TODO: login request
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -27,12 +32,66 @@ export default function Login() {
       email: data.get('email'),
       password: data.get('password'),
     });
+  // request to login
+  const rsp = service.login(data);
+  rsp
+    .then((response) => {
+      console.log(response.status);
+      if (response.status === 200) {
+        console.log(response.data);
+        if (response.data.status === "valid") {
+          setName(response.data.firstName);
+          setStatus(true);
+          navigate("/");
+          // return (<Alert severity="success">Successefully sign in!</Alert>)
+        } else {
+          if (response.data.comment === "invalid password")
+          return (<Alert severity="error">Invalid password, try again~</Alert>)
+        }
+        // navigate(response.data.url);
+      } else {
+        console.log(response.status);
+        // navigate("https://ec2-18-219-149-124.us-east-2.compute.amazonaws.com:5011/index");
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   };
   const navigate = useNavigate();
 
   const onClickBack = () => {
     navigate("/");
   }
+  const onClickGG = (event) => {
+    event.preventDefault();
+
+  window.location.replace("https://ec2-18-219-149-124.us-east-2.compute.amazonaws.com:5011/login/google");
+  setName("Google User");
+  // request to login
+  const rsp = service.loginGoogle();
+  rsp
+    .then((response) => {
+      console.log(response.status);
+      if (response.status === 200) {
+        // console.log(response.data);
+        console.log(response.data);
+        // if (response.data.status === "unauthorized") {
+        //     console.log("???");
+        //     window.location.replace('https://ec2-18-219-149-124.us-east-2.compute.amazonaws.com:5011/login');
+        //     // navigate("https://ec2-18-219-149-124.us-east-2.compute.amazonaws.com:5011/login");
+        // } else {
+        //     navigate("/");
+        // }
+      } else {
+        console.log(response.status);
+        
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -90,17 +149,26 @@ export default function Login() {
               fullWidth
               variant="contained"
               onClick = {onClickBack}
+              sx={{ mb: 2 }}
             >
               Back to home
             </Button>
+
+            <Button
+              fullWidth
+              variant="contained"
+              onClick = {onClickGG}
+            >
+              Login with Google account
+            </Button>
             <Grid container>
-              <Grid item xs>
-                <Link href="https://ec2-18-219-149-124.us-east-2.compute.amazonaws.com:5011/login" variant="body2">
+              {/* <Grid item xs>
+                <Link href="https://ec2-18-219-149-124.us-east-2.compute.amazonaws.com:5011/index" variant="body2">
                   Login with Google account
                 </Link>
-              </Grid>
+              </Grid> */}
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="http://localhost:3000/signup" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
