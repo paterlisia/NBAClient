@@ -8,32 +8,25 @@ import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 
-export default function LeaderPlayers() {
+export default function LeaderPlayers(props) {
+    const {
+        player
+      } = props;
   return (
     <Box sx={{ width: "100%", maxWidth: 200, bgcolor: "background.paper" }}>
         <br/>
-      <Typography
-        component="div"
-        color="text.primary"
-        align="center"
-      >
-        GAME LEADERS
-      </Typography>
-      <br/>
-      <Divider />
-      <List sx={{ width: "100%", maxWidth: 200, bgcolor: "background.paper" }}>
         <ListItem alignItems="flex-start">
           <ListItemAvatar>
             <Avatar
-              alt="Kristaps Porzingis"
-              src="../static/images/avatar/1.jpg"
+              alt={player[0].mvp.name}
+              src="/static/images/avatar/1.jpg"
             />
           </ListItemAvatar>
           <ListItemText
-            primary="Kristaps Porzingis"
+            primary={player[0].mvp.name}
             secondary={
               <React.Fragment>
-                {"WAS | #6 |F-C"}
+                {player[0].name} | {player[0].mvp.pts}
               </React.Fragment>
             }
           />
@@ -41,18 +34,17 @@ export default function LeaderPlayers() {
         <Divider variant="inset" component="li" />
         <ListItem alignItems="flex-start">
           <ListItemAvatar>
-            <Avatar alt="James Hardon" src="/static/images/avatar/2.jpg" />
+            <Avatar alt={player[1].mvp.name} src="/static/images/avatar/2.jpg" />
           </ListItemAvatar>
           <ListItemText
-            primary="James Hardon"
+            primary={player[1].mvp.name}
             secondary={
               <React.Fragment>
-                {"PHI | #1 | G"}
+                {player[1].name} | {player[1].mvp.pts}
               </React.Fragment>
             }
           />
         </ListItem>
-      </List>
     </Box>
   );
 }
