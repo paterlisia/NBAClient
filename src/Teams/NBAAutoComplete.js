@@ -62,7 +62,7 @@ export default function NBAAutoComplete() {
     const [data, setData] = useState(null);
     useEffect(() => {
         const fetchData = async () => {
-            let team_url = "http://localhost:5011/api/teams/" + m.get(selectedTeam)
+            let team_url = "http://3.91.6.91:5011/api/teams/" + m.get(selectedTeam)
             console.log(team_url)
             const result = await axios(
                 team_url,
@@ -90,16 +90,16 @@ export default function NBAAutoComplete() {
                         <div>
                             <Grid item>
                                 <Link style={{ textDecoration:'none'}}
-                                to={`/team/${data[0].Team_ID}`}>
+                                to={`/team/${data.Team_ID}`}>
                                 <CustomCard
                                     styles={styles1}
-                                    brand={data[0].Team_Arena}
+                                    brand={data.Team_Arena}
                                     date={'11.09.2022'}
                                     cover={
-                                        data[0].Team_Image
+                                        data.Team_Image
                                     }
-                                    logo={data[0].Team_Logo}
-                                    title={data[0].Team_Name}
+                                    logo={data.Team_Logo}
+                                    title={data.Team_Name}
                                 />
                                 </Link>
                             </Grid>

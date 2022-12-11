@@ -55,8 +55,7 @@ export default function Home() {
               spacing={2}
               justifyContent="center"
             >
-              <Button variant="contained">Sign up</Button>
-              <Button variant="outlined">Explore</Button>
+              <Button variant="outlined" href="https://www.nba.com/">Explore</Button>
             </Stack>
           </Container>
         </Box>
