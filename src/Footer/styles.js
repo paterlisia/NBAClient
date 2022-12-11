@@ -1,15 +1,15 @@
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
-    footer: {
+  footer: {
     background: "black",
     color: "white",
-    fontSize:10,
+    fontSize: 10,
     opacity: 0.9,
 
-    '& Copyright': {
-        fontSize:12,
-    }
+    "& Copyright": {
+      fontSize: 12,
+    },
   },
 });
 
