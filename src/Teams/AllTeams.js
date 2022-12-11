@@ -56,7 +56,8 @@ export default function AllTeams() {
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios(
-        `http://localhost:5011/api/teams`,
+        // `http://localhost:5011/api/teams`,
+        'http://3.91.6.91:5011/api/teams',
       );
       setTeams(result.data);
     };

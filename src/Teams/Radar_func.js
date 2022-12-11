@@ -27,7 +27,7 @@ export default function RadarChart() {
     console.log(current)
     let arr = current.split('/')
     console.log(arr)
-    let team_url = "http://localhost:5011/api/teams/" + arr[2]
+    let team_url = "http://3.91.6.91:5011/api/teams/" + arr[2]
 
     useEffect(() => {
       window.scrollTo(0, 0);
@@ -53,9 +53,9 @@ export default function RadarChart() {
 
     const series = [
         {
-        name: data[0].Team_Name,
-        data: [data[0].Team_Fga/94.4, data[0].Team_3pa/41.3, data[0].Team_Fta/24.5, 
-        data[0].Team_Pts/115.9, data[0].Team_Win_Percentage/0.683, data[0].Team_Oreb/14.1],
+        name: data.Team_Name,
+        data: [data.Team_Fga/94.4, data.Team_3pa/41.3, data.Team_Fta/24.5, 
+        data.Team_Pts/115.9, data.Team_Win_Percentage/0.683, data.Team_Oreb/14.1],
       },
       {
         name: 'Best',
