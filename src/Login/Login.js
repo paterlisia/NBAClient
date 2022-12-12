@@ -93,6 +93,10 @@ export default function Login(props) {
     });
   };
 
+  const onClickSignUp = () => {
+    navigate("/signup");
+  }
+
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
@@ -149,7 +153,7 @@ export default function Login(props) {
               fullWidth
               variant="contained"
               onClick = {onClickBack}
-              sx={{ mb: 2 }}
+              sx={{ mb: 2}}
             >
               Back to home
             </Button>
@@ -158,21 +162,19 @@ export default function Login(props) {
               fullWidth
               variant="contained"
               onClick = {onClickGG}
+              sx={{ mb: 2 }}
             >
               Login with Google account
             </Button>
-            <Grid container>
-              {/* <Grid item xs>
-                <Link href="https://ec2-18-219-149-124.us-east-2.compute.amazonaws.com:5011/index" variant="body2">
-                  Login with Google account
-                </Link>
-              </Grid> */}
-              <Grid item>
-                <Link href="http://localhost:3000/signup" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
-            </Grid>
+            
+
+            <Button
+              fullWidth
+              variant="contained"
+              onClick = {onClickSignUp}
+            >
+              Sign up
+            </Button>
           </Box>
         </Box>
       </Container>
